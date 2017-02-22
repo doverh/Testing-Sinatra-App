@@ -19,17 +19,25 @@ class TestApp < Minitest::Test
 	end
 
 	def test_post_name
-		post '/name', name:'Jon'
+		post '/name', name:'Dov'
 		follow_redirect!
+		assert(last_response.body.include?('Dov'))
 		assert(last_response.ok?)
-		assert(last_response.body.include?('Jon'))
 		
 	end
 
-	def test_get_age
-		get '/age?user_name = Dover'
+	 def test_get_age
+		get '/age?name= Dov'
 		assert(last_response.ok?)
-		assert(last_response.body.include?('Dover'))
+		assert(last_response.body.include?('Dov'))
+	end
+
+	def test_post_age
+		post '/age', name:'Dov', age:'32'
+		follow_redirect!
+		assert(last_response.body.include?('Dov'))
+		assert(last_response.body.include?('32'))
+		assert(last_response.ok?)		
 	end
 
 end
