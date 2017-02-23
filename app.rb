@@ -1,6 +1,7 @@
 require 'sinatra'
 
 class PersonalDetailsApp < Sinatra::Base
+	
 	get '/' do
 		erb:name
 	end
@@ -17,13 +18,13 @@ class PersonalDetailsApp < Sinatra::Base
 	post '/age' do
 	 	name = params[:name]
 	 	age = params[:age]
-	  	redirect 'results?name='+ name + '&age='+ age
+	  	redirect "results?name=#{name}&age=#{age}"
 	 end
 
 	 get '/results' do
 	 	name = params[:name]
 	 	age = params[:age]
-	  	erb :results, locals:{name: name, age:age}
+	  	erb :results, locals:{name:name, age:age}
 	 end
 
 end
