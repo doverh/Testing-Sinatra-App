@@ -40,9 +40,32 @@ class TestApp < Minitest::Test
 	end
 
 	def test_get_numbers
-		get '/numbers?name= Dov&age=32'
+		get '/numbers?name=Dov&age=32'
 		assert(last_response.body.include?('Dov'))
 		assert(last_response.body.include?('32'))
 		assert(last_response.ok?)
 	end
+
+	def test_post_numbers
+		post '/numbers', name:'Dov', age:'32', num1:'11', num2:'22', num3:'33'
+		follow_redirect!
+		assert(last_response.ok?)	
+		assert(last_response.body.include?('Dov'))
+		assert(last_response.body.include?('32'))
+		assert(last_response.body.include?('11'))
+		assert(last_response.body.include?('22'))
+		assert(last_response.body.include?('33'))
+	end
+
+	def test_get_results
+		get '/results?name= Dov&age=32&num1=11&num2=22&num3=33'
+		assert(last_response.ok?)
+		assert(last_response.body.include?('Dov'))
+		assert(last_response.body.include?('32'))
+		assert(last_response.body.include?('11'))
+		assert(last_response.body.include?('22'))
+		assert(last_response.body.include?('33'))
+	end
+
+
 end
