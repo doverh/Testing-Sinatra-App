@@ -11,11 +11,10 @@ class TestApp < Minitest::Test
 
 	def test_get_test_entry_page
 		get '/'
-		assert(last_response.ok?)
 		assert(last_response.body.include?('Hello, whats your name?'))
-		assert(last_response.body.include?('<input type "text" name="name">'))
+		assert(last_response.body.include?('<input type="text" name="name">'))
 		assert(last_response.body.include?('<form method="post" action ="name">'))
-	
+		assert(last_response.ok?)
 	end
 
 	def test_post_name
@@ -35,9 +34,18 @@ class TestApp < Minitest::Test
 	def test_post_age
 		post '/age', name:'Dov', age:'32'
 		follow_redirect!
+		assert(last_response.ok?)	
 		assert(last_response.body.include?('Dov'))
 		assert(last_response.body.include?('32'))
-		assert(last_response.ok?)		
+		
 	end
 
+	def test_get_numbers
+		get '/numbers?name= Dov&age=32'
+		assert(last_response.body.include?('#{name}, what are  your favorite numbers?'))
+		assert(last_response.body.include?('<input type "text" name="num1">'))
+		assert(last_response.body.include?('<input type "text" name="num2">'))
+		assert(last_response.body.include?('<input type "text" name="num3">'))
+		assert(last_response.ok?)
+	end
 end
