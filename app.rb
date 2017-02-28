@@ -33,10 +33,10 @@ class PersonalDetailsApp < Sinatra::Base
 	  	num1 = params[:num1]
 	 	num2 = params[:num2]
 	 	num3 = params[:num3]
-	 	redirect "results?name=#{name}&age=#{age}&num1#{num1}&num2#{num2}&num3#{num3}"
+	 	redirect "results?name=#{name}&age=#{age}&num1=#{num1}&num2=#{num2}&num3=#{num3}"
 	 end
 
-	 get 'results' do
+	 get '/results' do
 		name = params[:name]
 	 	age = params[:age]
 	  	num1 = params[:num1]

@@ -1,10 +1,11 @@
 <%=name%> what are  your favorite numbers?
 <form method="post" action ="numbers">
+	<input type="hidden" name="name" value=<%=name%>>
+	<input type="hidden" name="age" value=<%=age%>>
 	NUM 1:<input type="text" name="num1">
 	NUM 2:<input type="text" name="num2">
 	NUM 3:<input type="text" name="num3">
-	<input type="hidden" name="name" value=<%=name%>>
-	<input type="hidden" name="name" value=<%=age%>>
+
 <input type="submit" value="submit">
 </form>
 
