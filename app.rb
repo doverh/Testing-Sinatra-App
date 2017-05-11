@@ -1,7 +1,5 @@
 require 'sinatra'
 
-class PersonalDetailsApp < Sinatra::Base
-	
 	get '/' do
 		erb:name
 	end
@@ -44,4 +42,3 @@ class PersonalDetailsApp < Sinatra::Base
 	 	num3 = params[:num3]
 	 	erb :results, locals:{name:name, age:age, num1:num1, num2:num2, num3: num3}
 	 end
-end
